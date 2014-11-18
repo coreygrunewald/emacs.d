@@ -22,6 +22,7 @@
 (require 'cjg-linum)
 (require 'cjg-evil)
 (require 'cjg-git-gutter)
+(require 'cjg-magit)
 (require 'cjg-flycheck)
 (require 'cjg-theme)
 
