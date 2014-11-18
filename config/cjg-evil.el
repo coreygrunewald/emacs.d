@@ -2,6 +2,17 @@
   (interactive)
   (dired (file-name-directory buffer-file-name)))
 
+;; In order to work properly, we need to load evil-leader-mode before we load
+;; evil-mode.
+(use-package evil-leader
+  :commands (evil-leader-mode global-evil-leader-mode)
+  :ensure evil-leader
+  :demand evil-leader
+  :init
+  (progn
+    (evil-leader/set-leader ",")
+        (global-evil-leader-mode t)))
+
 (use-package evil
   :ensure evil
   :config

@@ -13,23 +13,22 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(progn
-  (require 'elisp-slime-nav)
-  (defun cjg-lisp-hook ()
-    (elisp-slime-nav-mode)
-    (turn-on-eldoc-mode))
-  (add-hook 'emacs-lisp-mode-hook 'cjg-lisp-hook))
-
 (require 'use-package)
 (require 'cjg-core)
+(require 'cjg-elisp-slime-nav)
 (require 'cjg-ibuffer)
 (require 'cjg-dired)
 (require 'cjg-ido)
 (require 'cjg-linum)
+(require 'cjg-evil)
+(require 'cjg-git-gutter)
+(require 'cjg-flycheck)
+(require 'cjg-theme)
+
+;; languages
+
 (require 'cjg-web)
 (require 'cjg-js)
+(require 'cl) ;; temporary work around for php mode until bug gets fixed
+(require 'cjg-php)
 (require 'cjg-less)
-(require 'cjg-evil)
-
-(require 'color-theme-sanityinc-tomorrow)
-(load-theme 'sanityinc-tomorrow-night t)
