@@ -12,6 +12,8 @@
 
 (set-fringe-style '(8 . 0))
 
+(setq-default show-trailing-whitespace t)
+
 ;; from <https://github.com/bling/dotemacs/>
 (defmacro after (feature &rest body)
   "After FEATURE is loaded, evaluate BODY."
