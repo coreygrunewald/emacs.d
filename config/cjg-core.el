@@ -12,7 +12,12 @@
 
 (set-fringe-style '(8 . 0))
 
-(setq-default show-trailing-whitespace t)
+;;(setq-default show-trailing-whitespace t)
+(setq whitespace-style '(trailing))
+(global-whitespace-mode 1)
+
+(setq scroll-conservatively 9999
+            scroll-preserve-screen-position t)
 
 ;; from <https://github.com/bling/dotemacs/>
 (defmacro after (feature &rest body)

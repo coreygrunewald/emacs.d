@@ -12,6 +12,32 @@
     (setq ido-save-directory-list-file
           (concat user-emacs-directory ".cache/ido.last"))
 
+    (use-package smex
+      :ensure smex
+      :config
+      (progn
+        (global-set-key (kbd "M-x") 'smex)
+        (setq smex-save-file (concat user-emacs-directory ".cache/smex-items"))
+        (smex-initialize)
+
+        ;; The following is from <http://www.emacswiki.org/emacs/Smex>.
+        ;; Typing SPC inserts a hyphen:
+        (defadvice smex (around space-inserts-hyphen activate compile)
+          (let ((ido-cannot-complete-command
+                 `(lambda ()
+                    (interactive)
+                    (if (string= " " (this-command-keys))
+                        (insert ?-)
+                      (funcall ,ido-cannot-complete-command)))))
+            ad-do-it))
+
+        ;; Update less often.
+        (defun smex-update-after-load (unused)
+          (when (boundp 'smex-cache)
+            (smex-update)))
+
+        (add-hook 'after-load-functions 'smex-update-after-load)))
+
     (use-package flx-ido
       :ensure flx-ido
       :defines (ido-cur-item ido-default-item ido-cur-list)
