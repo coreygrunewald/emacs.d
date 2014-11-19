@@ -27,7 +27,11 @@
 
 ;; make sure $PATH is set correctly
 (use-package exec-path-from-shell
-    :ensure exec-path-from-shell)
+  :ensure exec-path-from-shell
+  :init
+  (progn
+    (ignore-errors ;; windows
+        (exec-path-from-shell-initialize))))
 
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
