@@ -3,3 +3,4 @@ elpa
 auto-save-list
 .cache
 *.elc
+projectile-bookmarks.eld

@@ -1,7 +1,3 @@
-(defun dired-go-to-current-file-dir ()
-  (interactive)
-  (dired (file-name-directory buffer-file-name)))
-
 ;; In order to work properly, we need to load evil-leader-mode before we load
 ;; evil-mode.
 (use-package evil-leader
@@ -32,7 +28,7 @@
     (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
     (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
     (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-    (define-key evil-normal-state-map (kbd "-") 'dired-go-to-current-file-dir)
+    (define-key evil-normal-state-map (kbd "-") 'dired-jump)
     (evil-define-key 'normal emacs-lisp-mode-map (kbd "K")
 	'elisp-slime-nav-describe-elisp-thing-at-point)
     (evil-set-initial-state 'flycheck-error-list-mode 'normal)

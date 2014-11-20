@@ -13,8 +13,8 @@
 (set-fringe-style '(8 . 0))
 
 ;;(setq-default show-trailing-whitespace t)
-(setq whitespace-style '(trailing))
-(global-whitespace-mode 1)
+(setq whitespace-style '(trailing lines newline))
+(global-whitespace-mode +1)
 
 (setq scroll-conservatively 9999
             scroll-preserve-screen-position t)

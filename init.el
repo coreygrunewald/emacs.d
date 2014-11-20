@@ -27,6 +27,7 @@
 (require 'cjg-git-gutter)
 (require 'cjg-magit)
 (require 'cjg-flycheck)
+(require 'cjg-projects)
 (require 'cjg-evil)
 (require 'cjg-package-list)
 
