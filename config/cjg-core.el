@@ -16,7 +16,7 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 ;;(setq-default show-trailing-whitespace t)
-(setq whitespace-style '(trailing lines newline))
+(setq whitespace-style '(face trailing))
 (global-whitespace-mode +1)
 
 (setq scroll-conservatively 9999
