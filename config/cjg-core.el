@@ -12,6 +12,9 @@
 
 (set-fringe-style '(8 . 0))
 
+(setq visual-line-mode +1)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
 ;;(setq-default show-trailing-whitespace t)
 (setq whitespace-style '(trailing lines newline))
 (global-whitespace-mode +1)
