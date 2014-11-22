@@ -15,19 +15,28 @@
 (setq visual-line-mode +1)
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-;;(setq-default show-trailing-whitespace t)
-(setq whitespace-style '(face trailing))
-(global-whitespace-mode +1)
+;; ------------------------------ trailing whitespace
+;; show trailing whitespace in following mode
+(defun cjg/show-trailing-whitespace ()
+  (setq show-trailing-whitespace t))
+
+(add-hook 'prog-mode-hook 'cjg/show-trailing-whitespace)
+
+;; hide trailing whitespace in following mode
+(defun cjg/hide-trailing-whitespace ()
+  (setq show-trailing-whitespace nil))
+
+(add-hook 'minibuffer-inactive-mode-hook 'cjg/hide-trailing-whitespace)
 
 (setq scroll-conservatively 9999
-            scroll-preserve-screen-position t)
+      scroll-preserve-screen-position t)
 
 ;; from <https://github.com/bling/dotemacs/>
 (defmacro after (feature &rest body)
   "After FEATURE is loaded, evaluate BODY."
   (declare (indent defun))
   `(eval-after-load ,feature
-          '(progn ,@body)))
+     '(progn ,@body)))
 
 
 ;; Hide startup messages
@@ -41,7 +50,7 @@
   :init
   (progn
     (ignore-errors ;; windows
-        (exec-path-from-shell-initialize))))
+      (exec-path-from-shell-initialize))))
 
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))

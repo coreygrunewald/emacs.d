@@ -1,6 +1,6 @@
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
-			 ("org" . "http://orgmode.org/elpa/")
-			 ("gnu" . "http://elpa.gnu.org/packages/")))
+                         ("org" . "http://orgmode.org/elpa/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
 
 (add-to-list 'load-path (concat user-emacs-directory "config"))
 (add-to-list 'load-path (concat user-emacs-directory "config" "/languages"))
