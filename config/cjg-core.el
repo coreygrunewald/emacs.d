@@ -28,6 +28,9 @@
 
 (add-hook 'minibuffer-inactive-mode-hook 'cjg/hide-trailing-whitespace)
 
+(global-whitespace-mode +1)
+(setq whitespace-style '(face tab-mark trailing))
+
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t)
 
