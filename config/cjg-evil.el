@@ -24,13 +24,26 @@
     (setq evil-replace-state-cursor '("#cc9393" box))
     (setq evil-want-fine-undo t)
     (setq evil-want-change-word-to-end t)
+
+    ; esc quits
+    (define-key evil-normal-state-map [escape] 'keyboard-quit)
+    (define-key evil-visual-state-map [escape] 'keyboard-quit)
+    (define-key minibuffer-local-map [escape] 'cjg-minibuffer-keyboard-quit)
+    (define-key minibuffer-local-ns-map [escape] 'cjg-minibuffer-keyboard-quit)
+    (define-key minibuffer-local-completion-map [escape] 'cjg-minibuffer-keyboard-quit)
+    (define-key minibuffer-local-must-match-map [escape] 'cjg-minibuffer-keyboard-quit)
+    (define-key minibuffer-local-isearch-map [escape] 'cjg-minibuffer-keyboard-quit)
+    ;; (global-set-key [escape] 'evil-exit-emacs-state)
+
     (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
     (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
     (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
     (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
     (define-key evil-normal-state-map (kbd "-") 'dired-jump)
+
     (evil-define-key 'normal emacs-lisp-mode-map (kbd "K")
-	'elisp-slime-nav-describe-elisp-thing-at-point)
+      'elisp-slime-nav-describe-elisp-thing-at-point)
+
     (evil-set-initial-state 'flycheck-error-list-mode 'normal)
     (evil-set-initial-state 'git-commit-mode 'insert)
     (evil-set-initial-state 'shell-mode 'emacs)

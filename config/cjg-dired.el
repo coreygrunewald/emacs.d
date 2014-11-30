@@ -1,3 +1,31 @@
+(put 'dired-find-alternate-file 'disabled nil)
+
+(use-package saveplace
+  :config
+  (progn
+    (setq save-place-file (concat user-emacs-directory ".cache/places"))
+    (setq-default save-place t)
+    ))
+
+(use-package savehist
+  :idle
+  :config
+  (progn
+    (setq savehist-file (concat user-emacs-directory ".cache/savehist")
+          savehist-additional-variables '(search ring regexp-search-ring)
+          savehist-autosave-interval 60)
+    (savehist-mode t)
+    ))
+
+(use-package recentf
+  :config
+  (progn
+    (setq recentf-save-file (concat user-emacs-directory ".cache/recentf")
+          recentf-max-saved-items 1000
+          recentf-max-menu-items 500)
+    (recentf-mode +1)
+    ))
+
 (require 'dired-x)
 (use-package dired-x
   :commands dired
@@ -41,7 +69,8 @@
 (after 'evil
   (evil-define-key 'normal dired-mode-map "h" 'my-dired-up-directory)
   (evil-define-key 'normal dired-mode-map "l" 'dired-find-alternate-file)
-  (evil-define-key 'normal dired-mode-map "a" 'ag-dired)
+  ;; need to install ag
+  ;; (evil-define-key 'normal dired-mode-map "a" 'ag-dired)
   (evil-define-key 'normal dired-mode-map "o" 'dired-sort-toggle-or-edit)
   (evil-define-key 'normal dired-mode-map "v" 'dired-toggle-marks)
   (evil-define-key 'normal dired-mode-map "m" 'dired-mark)

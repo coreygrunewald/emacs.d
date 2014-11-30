@@ -15,8 +15,6 @@
 
 (require 'use-package)
 
-(eval-when-compile (require 'cl))
-
 (require 'cjg-core)
 (require 'cjg-theme)
 (require 'cjg-elisp-slime-nav)
@@ -28,14 +26,17 @@
 (require 'cjg-magit)
 (require 'cjg-flycheck)
 (require 'cjg-projects)
-(require 'cjg-evil)
+(require 'cjg-help)
 (require 'cjg-package-list)
 
 ;; languages
 
 (require 'cjg-web)
 (require 'cjg-js)
-;; (require 'cl) ;; temporary work around for php mode until bug gets fixed
 (require 'cjg-php)
 (require 'cjg-less)
 (require 'cjg-jsx)
+
+;; evil
+
+(require 'cjg-evil)

@@ -1,3 +1,6 @@
+(eval-when-compile (require 'cl))
+(require 'cl-lib)
+
 (tool-bar-mode -1)
 
 (visual-line-mode 1)
@@ -17,16 +20,16 @@
 
 ;; ------------------------------ trailing whitespace
 ;; show trailing whitespace in following mode
-(defun cjg/show-trailing-whitespace ()
+(defun cjg-show-trailing-whitespace ()
   (setq show-trailing-whitespace t))
 
-(add-hook 'prog-mode-hook 'cjg/show-trailing-whitespace)
+(add-hook 'prog-mode-hook 'cjg-show-trailing-whitespace)
 
 ;; hide trailing whitespace in following mode
-(defun cjg/hide-trailing-whitespace ()
+(defun cjg-hide-trailing-whitespace ()
   (setq show-trailing-whitespace nil))
 
-(add-hook 'minibuffer-inactive-mode-hook 'cjg/hide-trailing-whitespace)
+(add-hook 'minibuffer-inactive-mode-hook 'cjg-hide-trailing-whitespace)
 
 (global-whitespace-mode +1)
 (setq whitespace-style '(face tab-mark trailing))
@@ -41,6 +44,16 @@
   `(eval-after-load ,feature
      '(progn ,@body)))
 
+;;  esc quits
+(defun cjg-minibuffer-keyboard-quit ()
+    "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+    (interactive)
+    (if (and delete-selection-mode transient-mark-mode mark-active)
+        (setq deactivate-mark t)
+      (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+          (abort-recursive-edit)))
 
 ;; Hide startup messages
 (setq inhibit-splash-screen t

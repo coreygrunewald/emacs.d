@@ -4,11 +4,13 @@
     (ido-mode 1)
     (ido-everywhere 1)
     (setq ido-enable-flex-matching t)
-    ;; (setq ido-create-new-buffer 'always)
-    ;; (setq ido-show-dot-for-dired t)
-    ;; (setq ido-confirm-unique-completion nil)
-    ;; (setq ido-enable-last-directory-history nil)
-    ;;(setq ido-use-filename-at-point 'guess)
+    (setq ido-use-virtual-buffers t)
+    (setq ido-enable-prefix nil)
+    (setq ido-create-new-buffer 'always)
+    (setq ido-show-dot-for-dired t)
+    (setq ido-confirm-unique-completion nil)
+    (setq ido-enable-last-directory-history nil)
+    (setq ido-use-filename-at-point 'guess)
     (setq ido-save-directory-list-file
           (concat user-emacs-directory ".cache/ido.last"))
 
@@ -37,6 +39,12 @@
             (smex-update)))
 
         (add-hook 'after-load-functions 'smex-update-after-load)))
+
+    (use-package ido-ubiquitous
+      :ensure ido-ubiquitous
+      :config
+      (progn
+        (ido-ubiquitous-mode 1)))
 
     (use-package flx-ido
       :ensure flx-ido
