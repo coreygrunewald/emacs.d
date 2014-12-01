@@ -1,6 +1,8 @@
 (eval-when-compile (require 'cl))
 (require 'cl-lib)
 
+;; basics
+
 (tool-bar-mode -1)
 
 (visual-line-mode 1)
@@ -16,14 +18,36 @@
 (set-fringe-style '(8 . 0))
 
 (setq visual-line-mode +1)
+
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-;; ------------------------------ trailing whitespace
-;; show trailing whitespace in following mode
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+(menu-bar-mode -1)
+
+;; type
+(setq-default line-spacing 4)
+(defvar my-graphical-font "Anonymous Pro-14"
+    "Font used for graphical editing sessions.")
+
+(defun my-set-window-font (font)
+    "Set the frame font to FONT.
+FONT is the name of a xft font, like `Monospace-10'. This command
+only has any effect on graphical frames."
+    (interactive "sFont: ")
+    (set-face-attribute 'default nil :font font)
+    (set-frame-font font nil t))
+
+(my-set-window-font my-graphical-font)
+
+;; trailing whitespace
+
 (defun cjg-show-trailing-whitespace ()
   (setq show-trailing-whitespace t))
 
-(add-hook 'prog-mode-hook 'cjg-show-trailing-whitespace)
+(add-hook 'find-file-hook 'cjg-show-trailing-whitespace)
 
 ;; hide trailing whitespace in following mode
 (defun cjg-hide-trailing-whitespace ()
@@ -34,8 +58,17 @@
 (global-whitespace-mode +1)
 (setq whitespace-style '(face tab-mark trailing))
 
+;; fullscreen
+
+(custom-set-variables
+  '(initial-frame-alist (quote ((fullscreen . maximized))))) ;; start maximized
+
+;; scrolling
+
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t)
+
+;; functions
 
 ;; from <https://github.com/bling/dotemacs/>
 (defmacro after (feature &rest body)
@@ -44,7 +77,7 @@
   `(eval-after-load ,feature
      '(progn ,@body)))
 
-;;  esc quits
+;; esc quits
 (defun cjg-minibuffer-keyboard-quit ()
     "Abort recursive edit.
 In Delete Selection mode, if the mark is active, just deactivate it;
@@ -67,11 +100,6 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
   (progn
     (ignore-errors ;; windows
       (exec-path-from-shell-initialize))))
-
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-(menu-bar-mode -1)
 
 ;; Let me write `y` or `n` even for important stuff that would normally require
 ;; me to fully type `yes` or `no`.
