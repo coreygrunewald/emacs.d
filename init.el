@@ -27,6 +27,7 @@
 (require 'cjg-flycheck)
 (require 'cjg-projects)
 (require 'cjg-help)
+(require 'cjg-helm)
 (require 'cjg-package-list)
 
 ;; languages

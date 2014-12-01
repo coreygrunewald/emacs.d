@@ -27,6 +27,10 @@
 
 (menu-bar-mode -1)
 
+;; Place custom settings in their own file.
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-exists-p custom-file) (load custom-file))
+
 ;; type
 (setq-default line-spacing 4)
 (defvar my-graphical-font "Anonymous Pro-14"
