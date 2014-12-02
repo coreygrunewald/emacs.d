@@ -42,6 +42,7 @@
     (define-key evil-normal-state-map (kbd "-") 'dired-jump)
 
     (define-key evil-normal-state-map (kbd "SPC SPC") 'helm-M-x)
+    (define-key evil-normal-state-map (kbd "SPC r") 'helm-resume)
 
     (evil-define-key 'normal emacs-lisp-mode-map (kbd "K")
       'elisp-slime-nav-describe-elisp-thing-at-point)

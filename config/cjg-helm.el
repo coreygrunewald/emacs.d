@@ -4,6 +4,10 @@
 
 (use-package helm
   :ensure helm
+  :diminish helm-mode
+  :init
+  (progn
+    (require 'helm-config))
   :config
   (progn
     (setq helm-buffers-fuzzy-matching t)
