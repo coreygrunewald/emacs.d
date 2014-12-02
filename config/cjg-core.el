@@ -27,6 +27,9 @@
 
 (menu-bar-mode -1)
 
+;; disable lion-style full screen for osx
+(setq ns-use-native-fullscreen nil)
+
 ;; Place custom settings in their own file.
 (setq custom-file (concat user-emacs-directory "custom.el"))
 (when (file-exists-p custom-file) (load custom-file))
@@ -61,11 +64,6 @@ only has any effect on graphical frames."
 
 (global-whitespace-mode +1)
 (setq whitespace-style '(face tab-mark trailing))
-
-;; fullscreen
-
-(custom-set-variables
-  '(initial-frame-alist (quote ((fullscreen . maximized))))) ;; start maximized
 
 ;; scrolling
 
@@ -107,6 +105,16 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
 ;; Let me write `y` or `n` even for important stuff that would normally require
 ;; me to fully type `yes` or `no`.
+(defadvice yes-or-no-p (around prevent-dialog activate)
+  "Prevent yes-or-no-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+
+(defadvice y-or-n-p (around prevent-dialog-yorn activate)
+  "Prevent y-or-n-p from activating a dialog"
+  (let ((use-dialog-box nil))
+    ad-do-it))
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; Flash the frame to represent a bell.

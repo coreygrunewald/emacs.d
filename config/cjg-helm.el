@@ -9,10 +9,12 @@
     (setq helm-buffers-fuzzy-matching t)
     (setq helm-split-window-default-side (quote other))
     (setq helm-split-window-in-side-p nil)
-    (defun my-helm-in-ido (buffer)
-      "Display a helm buffer in ido. Send the purists screaming."
-      (interactive)
-      (ido-buffer-internal 'display 'display-buffer nil nil nil 'ignore)))
+    (setq helm-ff-file-name-history-use-recentf t)
+    ;;(defun my-helm-in-ido (buffer)
+      ;;"Display a helm buffer in ido. Send the purists screaming."
+      ;;(interactive)
+      ;;(ido-buffer-internal 'display 'display-buffer nil nil nil 'ignore))
+    )
 
   (setq helm-display-function 'helm-default-display-buffer)
   (setq helm-adaptive-history-file "~/.emacs.d/helm-adapative-history")

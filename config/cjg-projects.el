@@ -33,4 +33,8 @@
     )
   )
 
+(add-to-list 'grep-find-ignored-directories "node_modules")
+(add-to-list 'grep-find-ignored-directories ".sass-cache")
+(add-to-list 'grep-find-ignored-directories ".cache")
+
 (provide 'cjg-projects)
