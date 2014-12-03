@@ -1,5 +1,10 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
+(defadvice dired-readin
+    (after dired-after-updating-hook first () activate)
+  "Sort dired listings with directories first before adding marks."
+  (dired-hide-details-mode))
+
 (use-package saveplace
   :config
   (progn
