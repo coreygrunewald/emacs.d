@@ -61,6 +61,10 @@
       (after 'evil
         (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop))))
 
+  (use-package helm-spotify
+    :ensure t
+    :commands helm-spotify)
+
   (after 'evil-leader
     (evil-leader/set-key "b" 'helm-mini)
     (evil-leader/set-key "i" 'helm-imenu))

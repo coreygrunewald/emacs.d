@@ -27,6 +27,9 @@
 
 (menu-bar-mode -1)
 
+;; always launch emacsclient full screen
+(add-to-list 'default-frame-alist '(fullscreen . fullboth))
+
 ;; disable lion-style full screen for osx
 (setq ns-use-native-fullscreen nil)
 
@@ -36,8 +39,8 @@
 
 ;; type
 (setq-default line-spacing 4)
-(defvar my-graphical-font "Anonymous Pro-14"
-    "Font used for graphical editing sessions.")
+
+(add-to-list 'default-frame-alist '(font . "Anonymous Pro-14"))
 
 (defun my-set-window-font (font)
     "Set the frame font to FONT.
@@ -46,8 +49,6 @@ only has any effect on graphical frames."
     (interactive "sFont: ")
     (set-face-attribute 'default nil :font font)
     (set-frame-font font nil t))
-
-(my-set-window-font my-graphical-font)
 
 ;; trailing whitespace
 
@@ -121,5 +122,18 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
 (setq visible-bell t)
 ;; nevermind that's annoying
 (setq ring-bell-function 'ignore)
+
+;; No popup frames.
+(setq ns-pop-up-frames nil)
+(setq pop-up-frames nil)
+(setq confirm-nonexistent-file-or-buffer nil)
+
+;; No prompt for killing a buffer with processes attached.
+(setq kill-buffer-query-functions
+  (remq 'process-kill-buffer-query-function
+        kill-buffer-query-functions))
+
+(setq inhibit-startup-message t
+      inhibit-startup-echo-area-message t)
 
 (provide 'cjg-core)
