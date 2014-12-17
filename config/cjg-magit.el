@@ -52,6 +52,7 @@
         ">" 'end-of-buffer
         "?" 'magit-key-mode-popup-dispatch
         "A" 'magit-cherry-pick-item
+        "B" 'magit-create-branch
         "C" 'magit-commit-add-log
         "D" 'magit-diff-working-tree
         "E" 'magit-interactive-rebase
@@ -119,6 +120,7 @@
         ">" 'end-of-buffer
         "?" 'magit-key-mode-popup-dispatch
         "A" 'magit-cherry-pick-item
+        "B" 'magit-create-branch
         "D" 'magit-diff
         "E" 'magit-interactive-rebase
         "F" 'magit-key-mode-popup-pulling
