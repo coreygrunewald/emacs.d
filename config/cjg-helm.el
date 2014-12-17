@@ -20,6 +20,10 @@
       ;;(ido-buffer-internal 'display 'display-buffer nil nil nil 'ignore))
     )
 
+  (global-set-key (kbd "C-c h") 'helm-command-prefix)
+  (global-unset-key (kbd "C-x c"))
+
+  (setq helm-quick-update t)
   (setq helm-display-function 'helm-default-display-buffer)
   (setq helm-adaptive-history-file "~/.emacs.d/helm-adapative-history")
 
@@ -34,22 +38,19 @@
     (use-package helm-projectile
       :ensure helm-projectile))
 
-  (defun helm-jump ()
-    "Find files with helm, but be smart about buffers and recent files."
-    (interactive)
-    (let ((helm-ff-transformer-show-only-basename nil))
-      (helm-other-buffer '(helm-projectile-sources-list
-                           helm-source-buffers-list
-                           helm-source-recentf
-                           helm-source-bookmarks
-                           helm-source-file-cache
-                           helm-source-files-in-current-dir
-                           helm-source-locate
-                           helm-source-buffer-not-found)
-                         "*helm jump*")))
-
-  (setq helm-command-prefix-key "C-c h")
-  (setq helm-quick-update t)
+;;  (defun helm-jump ()
+;;    "Find files with helm, but be smart about buffers and recent files."
+;;    (interactive)
+;;    (let ((helm-ff-transformer-show-only-basename nil))
+;;      (helm-other-buffer '(helm-projectile-sources-list
+;;                           helm-source-buffers-list
+;;                           helm-source-recentf
+;;                           helm-source-bookmarks
+;;                           helm-source-file-cache
+;;                           helm-source-files-in-current-dir
+;;                           helm-source-locate
+;;                           helm-source-buffer-not-found)
+;;                         "*helm jump*")))
 
   (use-package helm-swoop
     :ensure helm-swoop

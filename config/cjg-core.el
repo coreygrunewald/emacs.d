@@ -28,10 +28,27 @@
 (menu-bar-mode -1)
 
 ;; always launch emacsclient full screen
-(add-to-list 'default-frame-alist '(fullscreen . fullboth))
+;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
 
 ;; disable lion-style full screen for osx
 (setq ns-use-native-fullscreen nil)
+
+;; raise emacs when launched from osx cli
+(when (featurep 'ns)
+  (defun ns-raise-emacs ()
+    "Raise Emacs."
+    (ns-do-applescript "tell application \"Emacs\" to activate"))
+
+  (defun ns-raise-emacs-with-frame (frame)
+    "Raise Emacs and select the provided frame."
+    (with-selected-frame frame
+      (when (display-graphic-p)
+        (ns-raise-emacs))))
+
+  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
+
+  (when (display-graphic-p)
+    (ns-raise-emacs)))
 
 ;; Place custom settings in their own file.
 (setq custom-file (concat user-emacs-directory "custom.el"))
