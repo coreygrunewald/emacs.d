@@ -1,8 +1,10 @@
 (use-package groovy-mode
-  :ensure groovy-mode
+  :mode "\\.groovy?\\'"
   :config (progn
-            (groovy-electric-mode 1)
-            (add-to-list 'auto-mode-alist '("\\.groovy?\\'" . groovy-mode))
-            ))
+    ;;; make Groovy mode electric by default.
+            (add-hook 'groovy-mode-hook
+                      '(lambda ()
+                         (require 'groovy-electric)
+                         (groovy-electric-mode)))))
 
 (provide 'cjg-groovy)

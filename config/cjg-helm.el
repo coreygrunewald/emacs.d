@@ -2,6 +2,10 @@
 ;;
 ;; Settings for Helm, an interactive narrowing and completion framework.
 
+;; TODO:
+;; experiment with (helm-mode 1)
+;; while disabling ido-everywhere / ubiquotous
+
 (use-package helm
   :ensure helm
   :diminish helm-mode
@@ -11,14 +15,11 @@
   :config
   (progn
     (setq helm-buffers-fuzzy-matching t)
+    (setq helm-M-x-fuzzy-match t)
+    (setq helm-imenu-fuzzy-match t)
     (setq helm-split-window-default-side (quote other))
     (setq helm-split-window-in-side-p nil)
-    (setq helm-ff-file-name-history-use-recentf t)
-    ;;(defun my-helm-in-ido (buffer)
-      ;;"Display a helm buffer in ido. Send the purists screaming."
-      ;;(interactive)
-      ;;(ido-buffer-internal 'display 'display-buffer nil nil nil 'ignore))
-    )
+    (setq helm-ff-file-name-history-use-recentf t))
 
   (global-set-key (kbd "C-c h") 'helm-command-prefix)
   (global-unset-key (kbd "C-x c"))
@@ -32,25 +33,25 @@
   (define-key helm-map (kbd "C-j") 'helm-next-line)
   (define-key helm-map (kbd "C-k") 'helm-previous-line)
 
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)
+  (global-set-key (kbd "C-c f") 'helm-apropos)
+  (global-set-key (kbd "C-c r") 'helm-info-emacs)
+  (global-set-key (kbd "C-c C-l") 'helm-locate-library)
+  (global-set-key (kbd "C-c f") 'helm-recentf)
+
   (require 'helm-files)
 
   (after 'projectile
     (use-package helm-projectile
-      :ensure helm-projectile))
-
-;;  (defun helm-jump ()
-;;    "Find files with helm, but be smart about buffers and recent files."
-;;    (interactive)
-;;    (let ((helm-ff-transformer-show-only-basename nil))
-;;      (helm-other-buffer '(helm-projectile-sources-list
-;;                           helm-source-buffers-list
-;;                           helm-source-recentf
-;;                           helm-source-bookmarks
-;;                           helm-source-file-cache
-;;                           helm-source-files-in-current-dir
-;;                           helm-source-locate
-;;                           helm-source-buffer-not-found)
-;;                         "*helm jump*")))
+      :ensure helm-projectile
+      :config
+      (progn
+        (after 'evil-leader
+          (evil-leader/set-key "a" 'helm-projectile-ack))
+        (after 'evil
+          (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)))))
 
   (use-package helm-swoop
     :ensure helm-swoop
@@ -67,6 +68,7 @@
     :commands helm-spotify)
 
   (after 'evil-leader
+    (evil-leader/set-key "y" 'helm-show-kill-ring)
     (evil-leader/set-key "b" 'helm-mini)
     (evil-leader/set-key "i" 'helm-imenu))
 
