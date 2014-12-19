@@ -17,6 +17,7 @@
 
 (require 'cjg-core)
 (require 'cjg-theme)
+(require 'cjg-fonts)
 (require 'cjg-elisp-slime-nav)
 (require 'cjg-ibuffer)
 (require 'cjg-dired)
@@ -37,6 +38,7 @@
 (require 'cjg-php)
 (require 'cjg-less)
 (require 'cjg-jsx)
+(require 'cjg-groovy)
 
 ;; evil
 
