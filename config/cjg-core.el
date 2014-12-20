@@ -27,6 +27,9 @@
 
 (menu-bar-mode -1)
 
+;; show file path in frame title
+(setq-default frame-title-format "%b (%f)")
+
 ;; always launch emacsclient full screen
 ;; (add-to-list 'default-frame-alist '(fullscreen . fullboth))
 

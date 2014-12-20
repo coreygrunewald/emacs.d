@@ -11,4 +11,11 @@
     (set-face-foreground 'highlight nil)
     ))
 
+;;(use-package moe-theme
+;;  :ensure moe-theme
+;;  :init
+;;  (progn
+;;    (require 'moe-theme)
+;;    (moe-dark)))
+
 (provide 'cjg-theme)

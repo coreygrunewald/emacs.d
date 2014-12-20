@@ -19,7 +19,7 @@
 (require 'cjg-theme)
 (require 'cjg-fonts)
 (require 'cjg-elisp-slime-nav)
-(require 'cjg-ibuffer)
+(require 'cjg-buffers)
 (require 'cjg-dired)
 (require 'cjg-ido)
 (require 'cjg-linum)
@@ -30,6 +30,7 @@
 (require 'cjg-help)
 (require 'cjg-helm)
 (require 'cjg-package-list)
+(require 'cjg-powerline)
 
 ;; languages
 
