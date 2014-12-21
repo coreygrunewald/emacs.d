@@ -2,16 +2,14 @@
 ;;
 ;; Settings for Helm, an interactive narrowing and completion framework.
 
-;; TODO:
-;; experiment with (helm-mode 1)
-;; while disabling ido-everywhere / ubiquotous
-
 (use-package helm
   :ensure helm
   :diminish helm-mode
   :init
   (progn
-    (require 'helm-config))
+    (require 'helm-config)
+    (helm-mode 1)
+  )
   :config
   (progn
     (setq helm-buffers-fuzzy-matching t)
@@ -19,61 +17,71 @@
     (setq helm-imenu-fuzzy-match t)
     (setq helm-split-window-default-side (quote other))
     (setq helm-split-window-in-side-p nil)
-    (setq helm-ff-file-name-history-use-recentf t))
+    (setq helm-ff-file-name-history-use-recentf t)
 
-  (global-set-key (kbd "C-c h") 'helm-command-prefix)
-  (global-unset-key (kbd "C-x c"))
+    (setq helm-quick-update t)
+    (setq helm-display-function 'helm-default-display-buffer)
+    (setq helm-adaptive-history-file "~/.emacs.d/helm-adapative-history")
 
-  (setq helm-quick-update t)
-  (setq helm-display-function 'helm-default-display-buffer)
-  (setq helm-adaptive-history-file "~/.emacs.d/helm-adapative-history")
+    (define-key helm-map (kbd "C-p") 'helm-execute-persistent-action)
+    (define-key helm-map (kbd "C-n") 'helm-delete-minibuffer-contents)
+    (define-key helm-map (kbd "C-j") 'helm-next-line)
+    (define-key helm-map (kbd "C-k") 'helm-previous-line)
 
-  (define-key helm-map (kbd "C-p") 'helm-execute-persistent-action)
-  (define-key helm-map (kbd "C-n") 'helm-delete-minibuffer-contents)
-  (define-key helm-map (kbd "C-j") 'helm-next-line)
-  (define-key helm-map (kbd "C-k") 'helm-previous-line)
+    (global-set-key (kbd "C-c h") 'helm-command-prefix)
+    (global-unset-key (kbd "C-x c"))
 
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-  (global-set-key (kbd "C-c f") 'helm-apropos)
-  (global-set-key (kbd "C-c r") 'helm-info-emacs)
-  (global-set-key (kbd "C-c C-l") 'helm-locate-library)
-  (global-set-key (kbd "C-c f") 'helm-recentf)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+    (global-set-key (kbd "C-c f") 'helm-apropos)
+    (global-set-key (kbd "C-c r") 'helm-info-emacs)
+    (global-set-key (kbd "C-c C-l") 'helm-locate-library)
+    (global-set-key (kbd "C-c f") 'helm-recentf)
+    (global-set-key (kbd "C-c h g") 'helm-google-suggest)
 
-  (require 'helm-files)
+    (require 'helm-files)
 
-  (after 'projectile
-    (use-package helm-projectile
-      :ensure helm-projectile
+    (use-package helm-dash
+      :ensure helm-dash
+      :init
+      (progn
+        )
       :config
       (progn
-        (after 'evil-leader
-          (evil-leader/set-key "a" 'helm-projectile-ack))
+        ;; TODO: put file mode hooks for specific docsets
+        ))
+
+    (after 'projectile
+      (use-package helm-projectile
+        :ensure helm-projectile
+        :config
+        (progn
+          (after 'evil-leader
+            (evil-leader/set-key "a" 'helm-projectile-ack))
+          (after 'evil
+            (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)))))
+
+    (use-package helm-swoop
+      :ensure helm-swoop
+      :config
+      (progn
+        ;; Don't start searching for the thing at point by default.
+        ;; Let me type it.
+        (setq helm-swoop-pre-input-function (lambda () ()))
         (after 'evil
-          (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)))))
+          (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop))))
 
-  (use-package helm-swoop
-    :ensure helm-swoop
-    :config
-    (progn
-      ;; Don't start searching for the thing at point by default.
-      ;; Let me type it.
-      (setq helm-swoop-pre-input-function (lambda () ()))
-      (after 'evil
-        (define-key evil-normal-state-map (kbd "SPC l") 'helm-swoop))))
+    (use-package helm-spotify
+      :ensure t
+      :commands helm-spotify)
 
-  (use-package helm-spotify
-    :ensure t
-    :commands helm-spotify)
+    (after 'evil-leader
+      (evil-leader/set-key "y" 'helm-show-kill-ring)
+      (evil-leader/set-key "b" 'helm-mini)
+      (evil-leader/set-key "i" 'helm-imenu))
 
-  (after 'evil-leader
-    (evil-leader/set-key "y" 'helm-show-kill-ring)
-    (evil-leader/set-key "b" 'helm-mini)
-    (evil-leader/set-key "i" 'helm-imenu))
-
-  (after 'flycheck
-    (use-package helm-flycheck
-      :ensure helm-flycheck)))
+    (after 'flycheck
+      (use-package helm-flycheck
+        :ensure helm-flycheck))))
 
 (provide 'cjg-helm)

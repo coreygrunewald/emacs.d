@@ -21,7 +21,8 @@
 (require 'cjg-elisp-slime-nav)
 (require 'cjg-buffers)
 (require 'cjg-dired)
-(require 'cjg-ido)
+;; (require 'cjg-ido)
+(require 'cjg-autocomplete)
 (require 'cjg-linum)
 (require 'cjg-git-gutter)
 (require 'cjg-magit)
@@ -40,6 +41,7 @@
 (require 'cjg-less)
 (require 'cjg-jsx)
 (require 'cjg-groovy)
+(require 'cjg-org)
 
 ;; evil
 

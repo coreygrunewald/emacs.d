@@ -7,4 +7,14 @@
     (sml/apply-theme 'dark))
   )
 
+(use-package nyan-mode
+  :ensure nyan-mode
+  :init
+  (progn
+    (nyan-mode))
+  :config
+  (progn
+    (setq-default nyan-wavy-trail t))
+  )
+
 (provide 'cjg-powerline)
