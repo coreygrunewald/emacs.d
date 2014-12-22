@@ -48,7 +48,7 @@
         )
       :config
       (progn
-        ;; TODO: put file mode hooks for specific docsets
+        (setq helm-dash-browser-func 'eww)
         ))
 
     (after 'projectile
