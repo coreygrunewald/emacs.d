@@ -7,7 +7,7 @@
   (progn
     (require 'planet-theme)
     (load-theme 'planet t)
-    (set-face-background 'hl-line "gray11")
+    (set-face-background 'hl-line "#0a0b0e")
     (set-face-foreground 'highlight nil)
     ))
 

@@ -32,6 +32,7 @@
 (require 'cjg-helm)
 (require 'cjg-package-list)
 (require 'cjg-powerline)
+(require 'cjg-indentation)
 
 ;; languages
 

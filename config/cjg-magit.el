@@ -178,10 +178,11 @@
       (evil-define-key 'normal magit-process-mode-map (kbd "k") 'magit-goto-previous-section)
 
       (evil-define-key 'normal magit-branch-manager-mode-map (kbd "j") 'magit-goto-next-section)
-      (evil-define-key 'normal magit-branch-manager-mode-map (kbd "k") 'magit-goto-previous-section)))
+      (evil-define-key 'normal magit-branch-manager-mode-map (kbd "k") 'magit-goto-previous-section))
 
-    (after 'evil-leader
-      (evil-leader/set-key "m" 'magit-status))
+      (after 'evil-leader
+        (evil-leader/set-key "m" 'magit-status))
+    )
   )
 
 (provide 'cjg-magit)
