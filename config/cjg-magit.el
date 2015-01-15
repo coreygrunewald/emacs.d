@@ -185,4 +185,19 @@
     )
   )
 
+(use-package git-timemachine
+  :ensure git-timemachine
+  :config
+  (progn
+    (add-hook 'git-timemachine-mode-hook
+              (lambda() (evil-normalize-keymaps)))
+    (after 'evil
+      (evil-set-initial-state 'git-timemachine-mode 'normal)
+      (evil-define-key 'normal git-timemachine-mode-map (kbd "<up>") 'git-timemachine-show-next-revision)
+      (evil-define-key 'normal git-timemachine-mode-map (kbd "<down>") 'git-timemachine-show-previous-revision)
+      (evil-define-key 'normal git-timemachine-mode-map (kbd "q") 'git-timemachine-quit)
+      (evil-define-key 'normal git-timemachine-mode-map (kbd "<right>") 'git-timemachine-kill-abbreviated-revision)
+      (evil-define-key 'normal git-timemachine-mode-map (kbd "<left>") 'git-timemachine-kill-revision))
+    ))
+
 (provide 'cjg-magit)

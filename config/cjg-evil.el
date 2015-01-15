@@ -33,7 +33,7 @@
     (define-key minibuffer-local-completion-map [escape] 'cjg-minibuffer-keyboard-quit)
     (define-key minibuffer-local-must-match-map [escape] 'cjg-minibuffer-keyboard-quit)
     (define-key minibuffer-local-isearch-map [escape] 'cjg-minibuffer-keyboard-quit)
-    ;; (global-set-key [escape] 'evil-exit-emacs-state)
+    (global-set-key [escape] 'evil-exit-emacs-state)
 
     (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
     (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
@@ -55,5 +55,19 @@
     (evil-set-initial-state 'term-mode 'emacs)
     (evil-set-initial-state 'multi-term-mode 'emacs)
     ))
+
+(use-package evil-visualstar
+  :commands (global-evil-visualstar-mode)
+  :ensure evil-visualstar
+  :config
+  (progn
+    (global-evil-visualstar-mode t)))
+
+(use-package evil-surround
+  :commands (global-evil-surround-mode)
+  :ensure evil-surround
+  :config
+  (progn
+    (global-evil-surround-mode t)))
 
 (provide 'cjg-evil)
