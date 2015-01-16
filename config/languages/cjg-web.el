@@ -16,6 +16,7 @@
             (add-to-list 'auto-mode-alist '("\\.region\\'" . web-mode)))
   (add-hook 'web-mode-hook (lambda()
                              (when (equal web-mode-content-type "jsx")
+                               ;; TODO: specify custom imenu indexing function for jsx code!
                                (require 'js2-mode)
                                (js2-minor-mode)
                                (when (executable-find "tern")
