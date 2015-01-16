@@ -77,6 +77,7 @@
       :commands helm-spotify)
 
     (after 'evil-leader
+      (evil-leader/set-key "g" 'helm-do-grep)
       (evil-leader/set-key "y" 'helm-show-kill-ring)
       (evil-leader/set-key "b" 'helm-mini)
       (evil-leader/set-key "i" 'helm-imenu))
