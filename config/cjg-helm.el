@@ -57,7 +57,8 @@
         :config
         (progn
           (after 'evil-leader
-            (evil-leader/set-key "a" 'helm-projectile-ack))
+            (evil-leader/set-key "a" 'helm-projectile-ack)
+            (evil-leader/set-key "p" 'helm-projectile-switch-project))
           (after 'evil
             (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)))))
 
