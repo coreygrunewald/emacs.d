@@ -12,6 +12,20 @@
       (company-abort)
       (kbd arg)
       )
+
+    (when (executable-find "tern")
+      (use-package tern :ensure tern)
+      (after 'tern
+        (after 'company
+          (use-package company-tern
+            :ensure company-tern
+            :config (progn
+                      (add-to-list 'company-backends 'company-tern)
+                      )
+            )
+          )
+        )
+      )
     ;; C-hjkl in company-mode
     (define-key company-active-map (kbd "C-h") 'company-show-doc-buffer)
     (define-key company-active-map (kbd "C-l") 'company-show-location)

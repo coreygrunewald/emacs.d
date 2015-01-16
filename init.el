@@ -40,7 +40,7 @@
 (require 'cjg-js)
 (require 'cjg-php)
 (require 'cjg-less)
-(require 'cjg-jsx)
+;; (require 'cjg-jsx)
 (require 'cjg-groovy)
 (require 'cjg-org)
 

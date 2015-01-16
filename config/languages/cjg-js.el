@@ -7,7 +7,18 @@
   :config
   (progn
     (add-hook 'js2-mode-hook
-              (lambda () (interactive) (setq-local helm-dash-docsets '("JavaScript"))))
+              (lambda ()
+                (js2-imenu-extras-setup)
+                (setq-local helm-dash-docsets '("JavaScript"))))
+
+    (after 'js2-mode
+      (setq js2-highlight-level 3)
+      (when (executable-find "tern")
+        (after 'tern
+          (add-hook 'js2-mode-hook 'tern-mode)
+          )
+        )
+      )
     )
   )
 
