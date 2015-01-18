@@ -41,6 +41,7 @@
 (require 'cjg-php)
 (require 'cjg-less)
 ;; (require 'cjg-jsx)
+(require 'cjg-clojure)
 (require 'cjg-groovy)
 (require 'cjg-org)
 
