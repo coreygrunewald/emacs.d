@@ -54,7 +54,7 @@
       (progn
         (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
         (setq helm-ag-command-option "--after=0 --before=0 --context=0")
-        (setq helm-ag-insert-at-point 'symbol)
+        (setq helm-ag-insert-at-point 'nil)
         (setq helm-ag-use-grep-ignore-list t)))
 
     (after 'projectile
