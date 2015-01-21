@@ -43,21 +43,33 @@
 
     (use-package helm-dash
       :ensure helm-dash
-      :init
-      (progn
-        )
       :config
       (progn
         (setq helm-dash-browser-func 'eww)
         ))
+
+    (use-package helm-ag
+      :ensure helm-ag
+      :config
+      (progn
+        (setq helm-ag-base-command "ag --nocolor --nogroup --ignore-case")
+        (setq helm-ag-command-option "--after=0 --before=0 --context=0")
+        (setq helm-ag-insert-at-point 'symbol)
+        (setq helm-ag-use-grep-ignore-list t)))
 
     (after 'projectile
       (use-package helm-projectile
         :ensure helm-projectile
         :config
         (progn
+          (after 'helm-ag
+            (defun helm-projectile-ag ()
+              (interactive)
+              (helm-ag (projectile-project-root)))
+            (after 'evil-leader
+              (evil-leader/set-key "a" 'helm-projectile-ag)))
           (after 'evil-leader
-            (evil-leader/set-key "a" 'helm-projectile-ack)
+            (evil-leader/set-key "s" 'helm-projectile-ack)
             (evil-leader/set-key "p" 'helm-projectile-switch-project))
           (after 'evil
             (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)))))
