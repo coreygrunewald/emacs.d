@@ -33,6 +33,7 @@
 (require 'cjg-package-list)
 (require 'cjg-powerline)
 (require 'cjg-indentation)
+(require 'cjg-taskpaper)
 
 ;; languages
 
