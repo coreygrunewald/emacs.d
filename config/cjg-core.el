@@ -1,3 +1,4 @@
+;; For bad php-mode?
 (eval-when-compile (require 'cl))
 (require 'cl-lib)
 

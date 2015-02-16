@@ -31,10 +31,11 @@
         )
       (goto-char startpoint)
 
-      (when (get-buffer buffer) 
+      (when (get-buffer buffer)
         (kill-buffer buffer))
       ;;Open popupwindow for selecting project
-      (split-window-vertically (- (+ (length projects) 1)))
+      ;; TODO: this fails (split-window-vertically (- (+ (length projects) 1)))
+      (split-window-vertically)
       (other-window 1)
       (get-buffer-create buffer)
       (switch-to-buffer buffer)
@@ -45,9 +46,9 @@
         )
       (goto-char 0)
       )
-    (toggle-read-only t)
+    (read-only-mode t)
     (local-set-key (kbd "<return>") 'taskpaper-projectwindow-select)
-    (local-set-key (kbd "<ESC> <ESC>") 'taskpaper-projectwindow-esc)  
+    (local-set-key (kbd "<ESC> <ESC>") 'taskpaper-projectwindow-esc)
     )
 
   (defun taskpaper-projectwindow-esc()
@@ -76,7 +77,6 @@
       (re-search-forward project)
       (taskpaper-unfocus-project)
       (taskpaper-focus-selected-project)
-      
       )
     )
 
@@ -110,6 +110,7 @@
     (let ((startpoint (point)) (line (line-number-at-pos)))
       (back-to-indentation)
       (re-search-forward "@done" nil 2)
+      ;; TODO: fails if there is no extra line at the end of the buffer
       (if (= line (line-number-at-pos))
           (progn
             (end-of-line)

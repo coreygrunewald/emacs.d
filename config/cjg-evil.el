@@ -7,7 +7,10 @@
   :init
   (progn
     (evil-leader/set-leader ",")
-        (global-evil-leader-mode t)))
+    (global-evil-leader-mode t)
+    (evil-leader/set-key "e" 'evil-ace-jump-word-mode)   ; ,e for Ace Jump (word)
+    (evil-leader/set-key "l" 'evil-ace-jump-line-mode)   ; ,l for Ace Jump (line)
+    (evil-leader/set-key "x" 'evil-ace-jump-char-mode))) ; ,x for Ace Jump (char)
 
 (use-package evil
   :ensure evil

@@ -9,6 +9,7 @@
 (package-initialize)
 
 (setq package-enable-at-startup nil)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -34,6 +35,7 @@
 (require 'cjg-powerline)
 (require 'cjg-indentation)
 (require 'cjg-taskpaper)
+(require 'cjg-acejump)
 
 ;; languages
 
@@ -45,6 +47,7 @@
 (require 'cjg-clojure)
 (require 'cjg-groovy)
 (require 'cjg-org)
+(require 'cjg-symon)
 
 ;; evil
 
