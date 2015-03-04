@@ -63,6 +63,11 @@
 
 (add-to-list 'default-frame-alist '(font . "Anonymous Pro-14"))
 
+;; set vertical divider
+(set-face-attribute 'vertical-border
+                    nil
+                    :foreground "color")
+
 (defun my-set-window-font (font)
     "Set the frame font to FONT.
 FONT is the name of a xft font, like `Monospace-10'. This command

@@ -5,7 +5,7 @@
 
 (use-package js2-mode
   :ensure js2-mode
-  :mode "\\.js?\\'"
+  :mode "\\.js\\|.jss\\'"
   :init
   (progn
     (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))

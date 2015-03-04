@@ -1,7 +1,5 @@
 (use-package symon
   :commands symon-mode
-  :ensure symon
-  :init (progn
-          (symon-mode)))
+  :ensure symon)
 
 (provide 'cjg-symon)
